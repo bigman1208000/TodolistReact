@@ -7,4 +7,10 @@ export default {
   title: 'Buttons',
 };
 
-export const Test = () => <NavigationButtonComponent />;
+export const NavigationCompleted = () => (
+  <NavigationButtonComponent type="completed" />
+);
+
+export const NavigationIncompleted = () => (
+  <NavigationButtonComponent type="incompleted" selected />
+);

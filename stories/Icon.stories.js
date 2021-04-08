@@ -12,10 +12,10 @@ export default {
 
 export const Primary = () => (
   <Box>
-    <Icons.Logo className="icons" />
-    <Icons.LogoGetir className="icons" />
-    <Icons.Plus className="icons" />
-    <Icons.CheckCircle className="icons" />
-    <Icons.Wastebasket className="icons" />
+    <Icons.Logo className="icon" />
+    <Icons.LogoGetir className="icon" />
+    <Icons.Plus className="icon" />
+    <Icons.CheckCircle className="icon" />
+    <Icons.Wastebasket className="icon" />
   </Box>
 );
