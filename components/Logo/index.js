@@ -1,5 +1,5 @@
 import React from 'react';
-import cn from 'classnames';
+import Link from 'next/link';
 
 //styles
 import styles from './index.module.css';
@@ -13,10 +13,12 @@ import * as Icons from '../Icons';
 
 function Logo() {
   return (
-    <Box className={styles.box}>
-      <Icons.Logo className={styles.icon} />
-      <Text className={styles.name}>Todolist</Text>
-    </Box>
+    <Link href="./">
+      <Box className={styles.box}>
+        <Icons.Logo className={styles.icon} />
+        <Text className={styles.name}>Todolist</Text>
+      </Box>
+    </Link>
   );
 }
 

@@ -7,14 +7,14 @@ import Box from '../components/StyledSystem/box';
 import Layout from '../components/Layout/index';
 import Header from '../components/Header/index';
 
-function HomePage() {
+function CompletedPage() {
   return (
     <Layout>
-      <Header />
+      <Header selectedPage="completed" />
       <Box bg="blue" />
       <Box bg="orange" />
     </Layout>
   );
 }
 
-export default HomePage;
+export default CompletedPage;
