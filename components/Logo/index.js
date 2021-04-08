@@ -8,7 +8,7 @@ import styles from './index.module.css';
 import Box from '../StyledSystem/box';
 import Text from '../StyledSystem/text';
 
-//components - styled-system
+//components - icons
 import * as Icons from '../Icons';
 
 function Logo() {

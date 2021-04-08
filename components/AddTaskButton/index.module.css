@@ -1,0 +1,14 @@
+.box {
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: transparent;
+  width: fit-content;
+  background-color: var(--c-purple);
+}
+
+.icon {
+  height: 15px;
+  width: 15px;
+  color: var(--c-white);
+}

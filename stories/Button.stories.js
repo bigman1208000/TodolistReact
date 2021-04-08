@@ -4,6 +4,7 @@ import React from 'react';
 import NavigationButtonComponent from '../components/NavigationButton/index';
 import NavigationComponent from '../components/Navigation/index';
 import LogoComponent from '../components/Logo/index';
+import AddTaskButtonComponent from '../components/AddTaskButton/index';
 
 export default {
   title: 'Buttons',
@@ -22,3 +23,5 @@ export const Navigation = () => (
 );
 
 export const Logo = () => <LogoComponent />;
+
+export const AddTask = () => <AddTaskButtonComponent />;
