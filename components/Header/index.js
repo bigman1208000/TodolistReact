@@ -1,10 +1,9 @@
 import React from 'react';
-import cn from 'classnames';
 
 //styles
 import styles from './index.module.css';
 
-//components - styled-system
+//components
 import Logo from '../Logo/index';
 import Navigation from '../Navigation/index';
 

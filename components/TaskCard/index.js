@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import cn from 'classnames';
 
 //styles
 import styles from './index.module.css';
@@ -14,7 +15,7 @@ import Button from '../StyledSystem/button';
 //components - icons
 import * as Icons from '../Icons';
 
-function TaskCard({ task }) {
+function TaskCard({ className, task }) {
   const [isCompleted, setIsCompleted] = useState(task.isCompleted);
 
   const removeTask = () => {
@@ -26,7 +27,7 @@ function TaskCard({ task }) {
   };
 
   return (
-    <Box className={styles.root}>
+    <Box className={cn(styles.root, className)}>
       <Button
         className={styles.leftContent}
         onClick={() => {

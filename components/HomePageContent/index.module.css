@@ -1,0 +1,25 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0px 40px 0px 40px;
+}
+
+.addTaskBar {
+  display: flex;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.todoAllListText {
+  width: 100%;
+  text-align: start;
+  margin: 30px 0px 30px 0px;
+  font-size: 18px;
+  font-family: SFProDisplay-SemiBold;
+}
+
+.taskCard {
+  margin-bottom: 20px;
+}

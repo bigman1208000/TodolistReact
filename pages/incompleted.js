@@ -4,15 +4,13 @@ import React from 'react';
 import Layout from '../components/Layout/index';
 import Header from '../components/Header/index';
 import Footer from '../components/Footer/index';
-
-//components - styled-system
-import Box from '../components/StyledSystem/box';
+import Content from '../components/IncompletedPageContent/index';
 
 function IncompletedPage() {
   return (
     <Layout>
       <Header selectedPage="incompleted" />
-      <Box bg="blue" />
+      <Content />
       <Footer />
     </Layout>
   );
