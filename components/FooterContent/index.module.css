@@ -1,0 +1,17 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  background-color: transparent;
+}
+
+.icon {
+  height: 16px;
+  width: 36.4px;
+}
+
+.assignment {
+  font-size: 15px;
+  margin-left: 5px;
+  color: var(--c-white);
+}
