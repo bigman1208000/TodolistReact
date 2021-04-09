@@ -17,9 +17,7 @@ import { getTasks } from '../../redux/actions/index';
 
 function HomePageContent({ tasks, getTasks }) {
   useEffect(() => {
-    setTimeout(() => {
-      getTasks();
-    }, 3000);
+    getTasks();
   }, []);
 
   return (
