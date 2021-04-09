@@ -5,6 +5,9 @@ const initialState = {
 };
 
 export const reducer = (state = initialState, action) => {
+  //caselerde kullanıyorum
+  let newTasks;
+
   switch (action.type) {
     //GET_TASKS
     case 'REQUEST_GET_TASKS':
@@ -23,7 +26,7 @@ export const reducer = (state = initialState, action) => {
 
     //ADD_TASK
     case 'REQUEST_ADD_TASK_SUCCESS':
-      const newTasks = [...state.tasks];
+      newTasks = [...state.tasks];
       newTasks.unshift(action.task);
       return {
         ...state,
@@ -31,6 +34,19 @@ export const reducer = (state = initialState, action) => {
       };
 
     case 'REQUEST_ADD_TASK_FAILED':
+      return { ...state };
+
+    //REMOVE_TASK
+    case 'REQUEST_REMOVE_TASK_SUCCESS':
+      const taskIndex = state.tasks.findIndex(
+        (task) => task._id === action.taskId,
+      );
+      newTasks = [...state.tasks];
+      newTasks.splice(taskIndex, 1);
+
+      return { ...state, tasks: newTasks };
+
+    case 'REQUEST_REMOVE_TASK_FAILED':
       return { ...state };
 
     default:

@@ -14,7 +14,7 @@ import Text from '../StyledSystem/text';
 
 //redux
 import { connect } from 'react-redux';
-import { getTasks, addTask } from '../../redux/actions/index';
+import { getTasks, addTask, removeTask } from '../../redux/actions/index';
 
 function HomePageContent({
   tasks,
@@ -22,6 +22,7 @@ function HomePageContent({
   isErrorGetTasks,
   getTasks,
   addTask,
+  removeTask,
 }) {
   useEffect(() => {
     getTasks();
@@ -47,7 +48,11 @@ function HomePageContent({
                 </Text>
               ) : (
                 tasks.map((task) => (
-                  <TaskCard task={task} className={styles.taskCard} />
+                  <TaskCard
+                    className={styles.taskCard}
+                    task={task}
+                    removeTask={removeTask}
+                  />
                 ))
               )}
             </>
@@ -69,6 +74,7 @@ const mapStateToProps = (state) => {
 const mapActionsToProps = {
   getTasks,
   addTask,
+  removeTask,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(HomePageContent);

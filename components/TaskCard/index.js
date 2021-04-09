@@ -15,11 +15,11 @@ import Button from '../StyledSystem/button';
 //components - icons
 import * as Icons from '../Icons';
 
-function TaskCard({ className, task }) {
+function TaskCard({ className, task, removeTask }) {
   const [isCompleted, setIsCompleted] = useState(task.isCompleted);
 
-  const removeTask = () => {
-    console.log('Task is removed');
+  const removeTaskInner = () => {
+    removeTask({ taskId: task._id });
   };
 
   const toogleIsCompleted = () => {
@@ -58,7 +58,7 @@ function TaskCard({ className, task }) {
         <Text className={styles.dateText}>
           <TimeCalculator createdAt={task.created_at} />
         </Text>
-        <Button className={styles.wastebasketButton} onClick={removeTask}>
+        <Button className={styles.wastebasketButton} onClick={removeTaskInner}>
           <Icons.Wastebasket className={styles.wastebasketIcon} />
         </Button>
       </Box>

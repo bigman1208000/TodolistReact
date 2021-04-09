@@ -29,10 +29,26 @@ function* addTask({ description }) {
   }
 }
 
+function* removeTask({ taskId }) {
+  try {
+    yield call(() => {
+      return axios.delete(env.BASE_URL + '/remove', {
+        data: {
+          taskId,
+        },
+      });
+    });
+    yield put({ type: 'REQUEST_REMOVE_TASK_SUCCESS', taskId });
+  } catch (error) {
+    yield put({ type: 'REQUEST_REMOVE_TASK_FAILED' });
+  }
+}
+
 //watch
 function* mySaga() {
   yield takeEvery('GET_TASKS', getTasks);
   yield takeEvery('ADD_TASK', addTask);
+  yield takeEvery('REMOVE_TASK', removeTask);
 }
 
 export default mySaga;
