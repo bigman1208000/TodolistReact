@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 //styles
 import styles from './index.module.css';
@@ -11,10 +11,17 @@ import TaskCard from '../TaskCard/index';
 import Box from '../StyledSystem/box';
 import Text from '../StyledSystem/text';
 
-//test data
-import tasks from '../../testData';
+//redux
+import { connect } from 'react-redux';
+import { getTasks } from '../../redux/actions/index';
 
-function HomePageContent() {
+function HomePageContent({ tasks, getTasks }) {
+  useEffect(() => {
+    setTimeout(() => {
+      getTasks();
+    }, 3000);
+  }, []);
+
   return (
     <Box className={styles.root}>
       <AddTaskBar className={styles.addTaskBar} />
@@ -26,4 +33,14 @@ function HomePageContent() {
   );
 }
 
-export default HomePageContent;
+const mapStateToProps = (state) => {
+  return {
+    tasks: state.tasks,
+  };
+};
+
+const mapActionsToProps = {
+  getTasks,
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(HomePageContent);
