@@ -6,6 +6,7 @@ import styles from './index.module.css';
 //components
 import AddTaskBar from '../AddTaskBar/index';
 import TaskCard from '../TaskCard/index';
+import Spinner from '../Spinner/index';
 
 //components - styled-system
 import Box from '../StyledSystem/box';
@@ -15,7 +16,12 @@ import Text from '../StyledSystem/text';
 import { connect } from 'react-redux';
 import { getTasks } from '../../redux/actions/index';
 
-function HomePageContent({ tasks, getTasks }) {
+function HomePageContent({
+  tasks,
+  getTasks,
+  isLoadingGetTasks,
+  isErrorGetTasks,
+}) {
   useEffect(() => {
     getTasks();
   }, []);
@@ -24,9 +30,29 @@ function HomePageContent({ tasks, getTasks }) {
     <Box className={styles.root}>
       <AddTaskBar className={styles.addTaskBar} />
       <Text className={styles.todoAllListText}>To-Do All List</Text>
-      {tasks.map((task) => (
-        <TaskCard task={task} className={styles.taskCard} />
-      ))}
+      {isLoadingGetTasks ? (
+        <Spinner className={styles.spinner} />
+      ) : (
+        <>
+          {isErrorGetTasks ? (
+            <Text className={styles.warnText}>
+              While fetching the tasks, an error occurred. Please try again.
+            </Text>
+          ) : (
+            <>
+              {tasks.length === 0 ? (
+                <Text className={styles.warnText}>
+                  List is empty. Please add a new task.
+                </Text>
+              ) : (
+                tasks.map((task) => (
+                  <TaskCard task={task} className={styles.taskCard} />
+                ))
+              )}
+            </>
+          )}
+        </>
+      )}
     </Box>
   );
 }
@@ -34,6 +60,8 @@ function HomePageContent({ tasks, getTasks }) {
 const mapStateToProps = (state) => {
   return {
     tasks: state.tasks,
+    isLoadingGetTasks: state.isLoadingGetTasks,
+    isErrorGetTasks: state.isErrorGetTasks,
   };
 };
 
