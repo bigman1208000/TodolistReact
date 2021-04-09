@@ -18,6 +18,7 @@ import {
   removeTask,
   toggleIscompletedOfTask,
 } from '../../redux/actions/index';
+import { completedTaskSelector } from '../../redux/selectors/index';
 
 function CompletedPageContent({
   tasks,
@@ -49,20 +50,17 @@ function CompletedPageContent({
             <>
               {tasks.length === 0 ? (
                 <Text className={styles.warnText}>
-                  There are not any incompleted tasks in our records.
+                  There are not any completed tasks in our records.
                 </Text>
               ) : (
-                tasks.map(
-                  (task) =>
-                    task.isCompleted && (
-                      <TaskCard
-                        className={styles.taskCard}
-                        task={task}
-                        removeTask={removeTask}
-                        toggleIscompletedOfTask={toggleIscompletedOfTask}
-                      />
-                    ),
-                )
+                tasks.map((task) => (
+                  <TaskCard
+                    className={styles.taskCard}
+                    task={task}
+                    removeTask={removeTask}
+                    toggleIscompletedOfTask={toggleIscompletedOfTask}
+                  />
+                ))
               )}
             </>
           )}
@@ -74,7 +72,7 @@ function CompletedPageContent({
 
 const mapStateToProps = (state) => {
   return {
-    tasks: state.tasks,
+    tasks: completedTaskSelector(state.tasks),
     isLoadingGetTasks: state.isLoadingGetTasks,
     isErrorGetTasks: state.isErrorGetTasks,
   };
