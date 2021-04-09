@@ -14,13 +14,14 @@ import Text from '../StyledSystem/text';
 
 //redux
 import { connect } from 'react-redux';
-import { getTasks } from '../../redux/actions/index';
+import { getTasks, addTask } from '../../redux/actions/index';
 
 function HomePageContent({
   tasks,
-  getTasks,
   isLoadingGetTasks,
   isErrorGetTasks,
+  getTasks,
+  addTask,
 }) {
   useEffect(() => {
     getTasks();
@@ -28,7 +29,7 @@ function HomePageContent({
 
   return (
     <Box className={styles.root}>
-      <AddTaskBar className={styles.addTaskBar} />
+      <AddTaskBar className={styles.addTaskBar} addTask={addTask} />
       <Text className={styles.todoAllListText}>To-Do All List</Text>
       {isLoadingGetTasks ? (
         <Spinner className={styles.spinner} />
@@ -67,6 +68,7 @@ const mapStateToProps = (state) => {
 
 const mapActionsToProps = {
   getTasks,
+  addTask,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(HomePageContent);

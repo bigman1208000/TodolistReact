@@ -16,9 +16,23 @@ function* getTasks() {
   }
 }
 
+function* addTask({ description }) {
+  try {
+    const tasks = yield call(() => {
+      return axios.post(env.BASE_URL + '/add', {
+        description,
+      });
+    });
+    yield put({ type: 'REQUEST_ADD_TASK_SUCCESS', task: tasks.data.task });
+  } catch (error) {
+    yield put({ type: 'REQUEST_ADD_TASK_FAILED' });
+  }
+}
+
 //watch
 function* mySaga() {
   yield takeEvery('GET_TASKS', getTasks);
+  yield takeEvery('ADD_TASK', addTask);
 }
 
 export default mySaga;

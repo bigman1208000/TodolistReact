@@ -11,11 +11,12 @@ import AddTaskButton from '../AddTaskButton/index';
 //components - styled-system
 import Box from '../StyledSystem/box';
 
-function AddTaskBar({ className }) {
+function AddTaskBar({ className, addTask }) {
   const [task, setTask] = useState('');
   const onTaskChange = (event) => setTask(event.target.value);
 
-  const addTask = () => {
+  const addTaskInner = () => {
+    addTask({ task: task.trim() });
     setTask('');
   };
 
@@ -24,13 +25,13 @@ function AddTaskBar({ className }) {
       <AddTaskTextInput
         task={task}
         onTaskChange={onTaskChange}
-        addTask={addTask}
+        addTask={addTaskInner}
       />
       {task.trim() !== '' && (
         <AddTaskButton
           className={styles.addTaskButton}
           task={task}
-          addTask={addTask}
+          addTask={addTaskInner}
         />
       )}
     </Box>
