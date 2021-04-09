@@ -31,8 +31,8 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'GET_TASKS':
-      console.log('TEST');
+    case 'GET_TASKS_SAGA':
+      console.log('REDUX TEST');
 
       return { ...state };
 
