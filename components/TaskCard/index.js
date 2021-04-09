@@ -15,15 +15,16 @@ import Button from '../StyledSystem/button';
 //components - icons
 import * as Icons from '../Icons';
 
-function TaskCard({ className, task, removeTask }) {
-  const [isCompleted, setIsCompleted] = useState(task.isCompleted);
-
+function TaskCard({ className, task, removeTask, toggleIscompletedOfTask }) {
   const removeTaskInner = () => {
     removeTask({ taskId: task._id });
   };
 
-  const toogleIsCompleted = () => {
-    setIsCompleted(!isCompleted);
+  const toogleIscompletedOfTaskInner = () => {
+    toggleIscompletedOfTask({
+      taskId: task._id,
+      isCompleted: task.isCompleted,
+    });
   };
 
   return (
@@ -31,10 +32,10 @@ function TaskCard({ className, task, removeTask }) {
       <Button
         className={styles.leftContent}
         onClick={() => {
-          toogleIsCompleted();
+          toogleIscompletedOfTaskInner();
         }}
       >
-        {isCompleted ? (
+        {task.isCompleted ? (
           <Icons.CheckCircle className={styles.checkCircleIcon} />
         ) : (
           <Box className={styles.emptyCheckBox}></Box>
@@ -45,7 +46,7 @@ function TaskCard({ className, task, removeTask }) {
         <Text
           className={styles.taskText}
           style={{
-            '--textDecoration': isCompleted
+            '--textDecoration': task.isCompleted
               ? 'line-through var(--c-green)'
               : 'none',
           }}

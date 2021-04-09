@@ -44,11 +44,26 @@ function* removeTask({ taskId }) {
   }
 }
 
+function* toggleIscompletedOfTask({ taskId, isCompleted }) {
+  try {
+    yield call(() => {
+      return axios.put(env.BASE_URL + '/update', {
+        taskId,
+        isCompleted: !isCompleted,
+      });
+    });
+    yield put({ type: 'REQUEST_TOGGLE_ISCOMPLETED_OF_TASK_SUCCESS', taskId });
+  } catch (error) {
+    yield put({ type: 'REQUEST_TOGGLE_ISCOMPLETED_OF_TASK_FAILED' });
+  }
+}
+
 //watch
 function* mySaga() {
   yield takeEvery('GET_TASKS', getTasks);
   yield takeEvery('ADD_TASK', addTask);
   yield takeEvery('REMOVE_TASK', removeTask);
+  yield takeEvery('TOGGLE_ISCOMPLETED_OF_TASK', toggleIscompletedOfTask);
 }
 
 export default mySaga;

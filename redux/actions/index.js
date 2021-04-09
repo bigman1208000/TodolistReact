@@ -9,3 +9,11 @@ export const addTask = (action) => {
 export const removeTask = (action) => {
   return { type: 'REMOVE_TASK', taskId: action.taskId };
 };
+
+export const toggleIscompletedOfTask = (action) => {
+  return {
+    type: 'TOGGLE_ISCOMPLETED_OF_TASK',
+    taskId: action.taskId,
+    isCompleted: action.isCompleted,
+  };
+};

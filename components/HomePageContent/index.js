@@ -14,7 +14,12 @@ import Text from '../StyledSystem/text';
 
 //redux
 import { connect } from 'react-redux';
-import { getTasks, addTask, removeTask } from '../../redux/actions/index';
+import {
+  getTasks,
+  addTask,
+  removeTask,
+  toggleIscompletedOfTask,
+} from '../../redux/actions/index';
 
 function HomePageContent({
   tasks,
@@ -23,6 +28,7 @@ function HomePageContent({
   getTasks,
   addTask,
   removeTask,
+  toggleIscompletedOfTask,
 }) {
   useEffect(() => {
     getTasks();
@@ -52,6 +58,7 @@ function HomePageContent({
                     className={styles.taskCard}
                     task={task}
                     removeTask={removeTask}
+                    toggleIscompletedOfTask={toggleIscompletedOfTask}
                   />
                 ))
               )}
@@ -75,6 +82,7 @@ const mapActionsToProps = {
   getTasks,
   addTask,
   removeTask,
+  toggleIscompletedOfTask,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(HomePageContent);

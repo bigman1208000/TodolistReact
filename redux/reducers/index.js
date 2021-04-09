@@ -5,8 +5,8 @@ const initialState = {
 };
 
 export const reducer = (state = initialState, action) => {
-  //caselerde kullanıyorum
-  let newTasks;
+  //caselerde kullanıyorum.
+  let newTasks, taskIndex;
 
   switch (action.type) {
     //GET_TASKS
@@ -38,15 +38,27 @@ export const reducer = (state = initialState, action) => {
 
     //REMOVE_TASK
     case 'REQUEST_REMOVE_TASK_SUCCESS':
-      const taskIndex = state.tasks.findIndex(
-        (task) => task._id === action.taskId,
-      );
+      taskIndex = state.tasks.findIndex((task) => task._id === action.taskId);
       newTasks = [...state.tasks];
       newTasks.splice(taskIndex, 1);
 
       return { ...state, tasks: newTasks };
 
     case 'REQUEST_REMOVE_TASK_FAILED':
+      return { ...state };
+
+    //TOGGLE_ISCOMPLETED_OF_TASK
+    case 'REQUEST_TOGGLE_ISCOMPLETED_OF_TASK_SUCCESS':
+      taskIndex = state.tasks.findIndex((task) => task._id === action.taskId);
+      newTasks = [...state.tasks];
+      newTasks[taskIndex] = {
+        ...newTasks[taskIndex],
+        isCompleted: !newTasks[taskIndex].isCompleted,
+      };
+
+      return { ...state, tasks: newTasks };
+
+    case 'REQUEST_TOGGLE_ISCOMPLETED_OF_TASK_FAILED':
       return { ...state };
 
     default:
