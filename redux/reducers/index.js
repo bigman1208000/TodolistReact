@@ -1,6 +1,6 @@
 const initialState = {
   tasks: [],
-  isLoadingGetTasks: false,
+  isLoadingGetTasks: true,
   isErrorGetTasks: false,
 };
 

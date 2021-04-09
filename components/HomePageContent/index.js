@@ -31,7 +31,10 @@ function HomePageContent({
   toggleIscompletedOfTask,
 }) {
   useEffect(() => {
-    getTasks();
+    //bu if kontrolünü yapma sebebim pageler arasında dolaşırken datalar çekilmişse bir daha fetch atmasını engellemek. Redux'da tutuyorum zaten.
+    if (tasks.length === 0) {
+      getTasks();
+    }
   }, []);
 
   return (
@@ -50,7 +53,7 @@ function HomePageContent({
             <>
               {tasks.length === 0 ? (
                 <Text className={styles.warnText}>
-                  List is empty. Please add a new task.
+                  There are not any tasks in our records. Please add a new task.
                 </Text>
               ) : (
                 tasks.map((task) => (
